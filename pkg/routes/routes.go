@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/MINI_PROJECT_ALTERRA/pkg/controllers"
+	"github.com/Mini_Project_Alterra/pkg/controllers"
 
 	"github.com/labstack/echo"
 )
@@ -9,11 +9,11 @@ import (
 func New() e *echo.Echo {
 	e := echo.New
 
-	e.GET("/users", controller.GetUsersController)
-	e.GET("/users/:id", controller.GetUserController)
-	e.POST("/users", controller.CreateUserController)
-	e.DELETE("/users/:id", controller.DeleteUserController)
-	e.PUT("/users/:id", controller.UpdateUserController)
+	e.GET("/kapals", controller.GetKapalsController)
+	e.GET("/kapals/:id", controller.GetKapalController)
+	e.POST("/kapals", controller.CreateKapalController)
+	e.DELETE("/kapals/:id", controller.DeleteKapalController)
+	e.PUT("/kapals/:id", controller.UpdateKapalController)
 
 	return e
 }
