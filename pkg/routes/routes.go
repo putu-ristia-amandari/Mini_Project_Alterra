@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Mini_Project_Alterra/pkg/controllers"
+	"github.com/putu-ristia-amandari/Mini_Project_Alterra/pkg/controllers"
 
 	"github.com/labstack/echo"
 )
