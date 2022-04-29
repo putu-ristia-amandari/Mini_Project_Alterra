@@ -20,9 +20,7 @@ type KedatanganKapal struct {
 }
 
 func CreateKedatanganKapal() (Response, error) {
-	db := database.DBConnect()
-
-	defer db.Close()
+	db := database.DB
 
 	sqlStatement := `INSERT * FROM kedatangan_kapal(daerah_penangkapan, tgl_keberangkatan, tgl_kedatangan) VALUES ($1, $2, $3) RETURNING id`
 
