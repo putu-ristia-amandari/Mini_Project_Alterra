@@ -1,8 +1,6 @@
 package database
 
 import (
-	// "database/sql"
-
 	"mini_project/pkg/config"
 
 	"gorm.io/driver/mysql"
