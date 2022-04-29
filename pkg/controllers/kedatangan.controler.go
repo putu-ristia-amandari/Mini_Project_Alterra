@@ -4,7 +4,7 @@ import (
 	"mini_project/pkg/models"
 	"net/http"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 func GetAllKedatanganKapal(c echo.Context) error {

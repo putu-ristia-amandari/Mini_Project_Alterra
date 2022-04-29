@@ -11,7 +11,7 @@ func Init() *echo.Echo {
 	e := echo.New()
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Selamat Datang pada Home Page Informasi Kedatangan Kapal")
+		return c.String(http.StatusOK, "Selamat Datang di Home Page Informasi Kedatangan Kapal")
 	})
 
 	e.GET("/kedatangan", controllers.GetAllKedatanganKapal)
