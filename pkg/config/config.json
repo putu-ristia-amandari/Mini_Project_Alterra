@@ -1,0 +1,8 @@
+{
+    "DB_USERNAME" : "root",
+    "DB_PASSWORD" : "MieKuah.1123#",
+    "DB_PORT" : "3360",
+    "DB_HOST" : "127.0.0.1",
+    "DB_NAME" : "informasi_kedatangan_kapal_perikanan"
+
+}
