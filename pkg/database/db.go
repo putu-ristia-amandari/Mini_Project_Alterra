@@ -1,25 +1,26 @@
 package database
 
 import (
-	"database/sql"
-	"fmt"
+	// "database/sql"
 
-	"github.com/putu-ristia-amandari/Mini_Project_Alterra/pkg/config"
+	"mini_project/pkg/config"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-func InitDB() {
+var DB *gorm.DB
+
+func DBConnect() (*gorm.DB, error) {
+
 	conf := config.GetConfig()
 	connectionString := conf.DB_USERNAME + ":" + conf.DB_PASSWORD + "@tcp(" + conf.DB_HOST + ":" + conf.DB_PORT + ")/" + conf.DB_NAME
 
 	var err error
-	db, err = gorm.Open(mysql.Open(connectionString), &gorm.Config{})
+	DB, err = gorm.Open(mysql.Open(connectionString), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
-	return db, err
-	}
-}
+	return DB, err
 
+}
