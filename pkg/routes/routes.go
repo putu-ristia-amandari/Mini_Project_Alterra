@@ -1,23 +1,20 @@
 package routes
 
 import (
+	"mini_project/pkg/controllers"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
-func New() *echo.Echo {
-	e := echo.New
+func Init() *echo.Echo {
+	e := echo.New()
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello!")
+		return c.String(http.StatusOK, "Selamat Datang pada Home Page Informasi Kedatangan Kapal")
 	})
 
-	// e.GET("/kedatangans", controller.GetkedatangansController)
-	// e.GET("/kedatangans/:id", controller.GetkedatanganController)
-	// e.POST("/kedatangans", controller.CreatekedatanganController)
-	// e.DELETE("/kedatangans/:id", controller.DeletekedatanganlController)
-	// e.PUT("/kedatangans/:id", controller.UpdatekedatanganController)
+	e.GET("/kedatangan", controllers.GetAllKedatanganKapal)
 
 	return e
 }
