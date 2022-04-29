@@ -1,15 +1,17 @@
 package models
 
 import (
-	"net/http"
+	"fmt"
+	"log"
+	"mini_project/pkg/database"
 	"time"
 )
 
 type KedatanganKapal struct {
-	Id                 int       `json:"id"`
-	Id_Kapal           int       `json:"id_kapal`
-	Id_Pelabuhan       int       `json:"id_pelabuhan`
-	Id_Jenis_Muatan    int       `json:"id_jenis_muatan"`
+	Id                 int       `gorm:"primaryKey" json:"id"`
+	Id_Kapal           int       `gorm:"foreignKey" json:"id_kapal`
+	Id_Pelabuhan       int       `gorm:"foreignKey" json:"id_pelabuhan`
+	Id_Jenis_Muatan    int       `gorm:"foreignKey" json:"id_jenis_muatan"`
 	Daerah_Penangkapan string    `json:"daerah_penangkapan`
 	Tgl_Keberangkatan  time.Time `json:"tgl_keberangkatan`
 	Tgl_Kedatangan     time.Time `json:"tgl_kedatangan"`
@@ -17,31 +19,21 @@ type KedatanganKapal struct {
 	Updated_At         time.Time `json:"updated_at`
 }
 
-func GetAllKedatanganKapal() (Response, error) {
-	var obj KedatanganKapal
-	var arrobj []KedatanganKapal
+func CreateKedatanganKapal() (Response, error) {
+	db := database.DBConnect()
+
+	defer db.Close()
+
+	sqlStatement := `INSERT * FROM kedatangan_kapal(daerah_penangkapan, tgl_keberangkatan, tgl_kedatangan) VALUES ($1, $2, $3) RETURNING id`
+
 	var res Response
-
-	con := db.DBConnect()
-
-	sqlStatement := "SELECT *FROM kedatangan_kapal.kedatangan_kapal"
-	rows, err := con.Query(sqlStatement)
-	defer rows.Close()
+	var id int
+	err := db.Query(sqlStatement, kedatangan_kapal.Daerah_Penangkapan, kedatangan_kapal.Tgl_Keberangkatan, kedatangan_kapal.Tgl_Kedatangan).Scan(&id)
 
 	if err != nil {
-		return res, err
+		log.Fatalf("Cannot Execution The Query. %v", err)
 	}
-	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.Id_Kapal, &obj.Id_Pelabuhan, &obj.Id_Jenis_Muatan, &obj.Daerah_Penangkapan, obj.Tgl_Keberangkatan, obj.Tgl_Kedatangan, obj.Created_At, obj.Updated_At)
-		if err != nil {
-			return res, err
-		}
+	fmt.Printf("Record Insert Data Single %v", id)
 
-		arrobj = append(arrobj, obj)
-	}
-	res.Status = http.StatusOK
-	res.Massage = "succes"
-	res.Data = arrobj
-
-	return res, nil
+	return res, err
 }
