@@ -1,18 +1,18 @@
 package main
 
 import (
-	"mini_project/pkg/database"
+	"mini_project/pkg/config"
 	"mini_project/pkg/routes"
 )
 
+func init() {
+	config.InitDBConnect()
+	config.InitialMigration()
+}
+
 func main() {
-	DB, err := database.DBConnect()
 
-	if err != nil {
-		panic(err)
-	}
-
-	e := routes.Init()
+	e := routes.Route()
 
 	e.Logger.Fatal(e.Start(":8000"))
 }
