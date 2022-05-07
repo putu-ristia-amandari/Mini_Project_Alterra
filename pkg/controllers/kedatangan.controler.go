@@ -41,6 +41,7 @@ func DeleteKedatanganKapalController(c echo.Context) error {
 }
 
 func CreateKedatanganKapalController(c echo.Context) error {
+	id := c.Param("id")
 	kapal := models.KedatanganKapal{}
 	c.Bind(&kapal)
 	err := database.CreateNewKedatanganKapal(kapal)
@@ -48,7 +49,9 @@ func CreateKedatanganKapalController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, kapal)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "succes insert data kedatangan kapal dengan id '" + id + "'",
+	})
 
 }
 
