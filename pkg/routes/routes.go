@@ -20,5 +20,7 @@ func Route() *echo.Echo {
 	e.POST("/kedatangan", controllers.CreateKedatanganKapalController)
 	e.PUT("/kedatangan/:id", controllers.UpdateKedatanganKapalController)
 
+	e.GET("/generate-hash/:password", controllers.GenerateHashPassword)
+
 	return e
 }
