@@ -1,26 +1,22 @@
 package database
 
 import (
-	"fmt"
-	"mini_project/pkg/config"
+	// "fmt"
+	// "mini_project/pkg/config"
 	"mini_project/pkg/models"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-var DB *gorm.DB
-var err error
+var (
+	DB  *gorm.DB
+	err error
+)
 
 func InitDBConnect() {
-	conf := config.GetConfig()
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
-		conf.DB_USERNAME,
-		conf.DB_PASSWORD,
-		conf.DB_PORT,
-		conf.DB_HOST,
-		conf.DB_NAME,
-	)
+
+	dsn := "root:MieKuah.1123#@tcp(127.0.0.1:3306)/informasi_kedatangan_kapal_perikanan?charset=utf8mb4&parseTime=True&loc=Local"
 
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
