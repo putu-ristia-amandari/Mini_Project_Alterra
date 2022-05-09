@@ -1,13 +1,13 @@
 package main
 
 import (
-	"mini_project/pkg/config"
+	"mini_project/pkg/database"
 	"mini_project/pkg/routes"
 )
 
 func init() {
-	config.InitDBConnect()
-	config.InitialMigration()
+	database.InitDBConnect()
+	database.InitialMigration()
 }
 
 func main() {

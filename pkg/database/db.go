@@ -4,54 +4,34 @@ import (
 	"fmt"
 	"mini_project/pkg/config"
 	"mini_project/pkg/models"
+
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-func GetAllKedatanganKapal() ([]models.KedatanganKapal, error) {
-	var listkapal []models.KedatanganKapal
+var DB *gorm.DB
+var err error
 
-	err := config.DB.Find(&listkapal).Error
+func InitDBConnect() {
+	conf := config.GetConfig()
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
+		conf.DB_USERNAME,
+		conf.DB_PASSWORD,
+		conf.DB_PORT,
+		conf.DB_HOST,
+		conf.DB_NAME,
+	)
+
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		fmt.Println(err)
+		panic("failed to connect database")
 	}
-	return listkapal, err
-
-	// 	res.Status = http.StatusOK
-	// 	res.Message = "Success"
-	// 	res.Data = listkapal
-
-	// 	return res, nil
-
 }
 
-func GetKedatanganKapalById(id string) (models.KedatanganKapal, error) {
-	var kedatangan models.KedatanganKapal
-	err := config.DB.First(&kedatangan, "id = ?", id).Debug().Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return kedatangan, err
+func DBConnect() *gorm.DB {
+	return DB
 }
 
-func DeleteKedatanganKapalById(id string) error {
-	err := config.DB.Delete(&models.KedatanganKapal{}, "id = ?", id).Debug().Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
-}
-
-func CreateNewKedatanganKapal(kedatangan models.KedatanganKapal) error {
-	err := config.DB.Save(&kedatangan).Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
-}
-
-func UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error {
-	err := config.DB.Model(&kedatangan).Where("id = ?", id).Updates(kedatangan).Debug().Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
+func InitialMigration() {
+	DB.AutoMigrate(&models.KedatanganKapal{})
 }

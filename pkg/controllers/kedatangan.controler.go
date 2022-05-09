@@ -1,15 +1,15 @@
 package controllers
 
 import (
-	"mini_project/pkg/database"
 	"mini_project/pkg/models"
+	"mini_project/pkg/repository"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
 func GetAllKedatanganKapalController(c echo.Context) error {
-	listkapal, err := database.GetAllKedatanganKapal()
+	listkapal, err := repository.GetAllKedatanganKapal()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
@@ -18,7 +18,7 @@ func GetAllKedatanganKapalController(c echo.Context) error {
 }
 
 func GetKedatanganKapalController(c echo.Context) error {
-	kapal, err := database.GetKedatanganKapalById(c.Param("id"))
+	kapal, err := repository.GetKedatanganKapalById(c.Param("id"))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
@@ -29,7 +29,7 @@ func GetKedatanganKapalController(c echo.Context) error {
 
 func DeleteKedatanganKapalController(c echo.Context) error {
 	id := c.Param("id")
-	err := database.DeleteKedatanganKapalById(id)
+	err := repository.DeleteKedatanganKapalById(id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
@@ -44,7 +44,7 @@ func CreateKedatanganKapalController(c echo.Context) error {
 	id := c.Param("id")
 	kapal := models.KedatanganKapal{}
 	c.Bind(&kapal)
-	err := database.CreateNewKedatanganKapal(kapal)
+	err := repository.CreateNewKedatanganKapal(kapal)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
@@ -58,7 +58,7 @@ func CreateKedatanganKapalController(c echo.Context) error {
 func UpdateKedatanganKapalController(c echo.Context) error {
 	kapal := models.KedatanganKapal{}
 	c.Bind(&kapal)
-	err := database.UpdateKedatanganKapalById(c.Param("id"), kapal)
+	err := repository.UpdateKedatanganKapalById(c.Param("id"), kapal)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
