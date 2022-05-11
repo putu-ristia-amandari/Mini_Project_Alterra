@@ -42,7 +42,7 @@ func CreateNewKedatanganKapal(kedatangan models.KedatanganKapal) error {
 }
 
 func UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error {
-	err := database.DB.Model(&kedatangan).Where("id = ?", id).Updates(kedatangan).Debug().Error
+	err := database.DB.Debug().Model(&kedatangan).Where("id = ?", id).Updates(&kedatangan).Error
 	if err != nil {
 		fmt.Println(err)
 	}
