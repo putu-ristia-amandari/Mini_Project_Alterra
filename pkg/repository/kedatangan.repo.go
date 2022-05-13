@@ -9,7 +9,7 @@ import (
 func GetAllKedatanganKapal() ([]models.KedatanganKapal, error) {
 	var listkapal []models.KedatanganKapal
 
-	err := database.DB.Find(&listkapal).Error
+	err := database.DB.Debug().Find(&listkapal).Error
 	if err != nil {
 		fmt.Println(err)
 	}

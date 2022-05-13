@@ -1,36 +1,37 @@
 package repository
 
-// import (
-// 	"fmt"
-// 	"mini_project/pkg/database"
-// 	"mini_project/pkg/helpers"
-// 	"mini_project/pkg/models"
-// )
+import (
+	"fmt"
+	"mini_project/pkg/database"
+	"mini_project/pkg/helpers"
+	"mini_project/pkg/models"
+)
 
-// func LoginCheck(username, password string) (models.User, bool error) {
-// 	var (
-// 		User models.User
-// 		pwd string
-// 	)
-// 	err := database.DB.Where(&User, "username = ?", username).First(&user).Error
-// 	if err != nil {
-// 		fmt.Println("Query Error")
-// 	}
-// 	return User, err
+func LoginCheck(username, password string) (bool, error) {
+	err := database.DB.First(&models.User{}, "username = ?", username).Debug().Error
+	// if err ==  {
+	// 	fmt.Println("Username Not Found")
+	// 	return false, err
+	// }
+	if err != nil {
+		fmt.Println("Query Error")
+		return false, err
+	}
 
-// 	match, err := helpers.CheckPasswordHash(password, pwd)
-// 	if !match {
-// 		fmt.Println("Hash and Password Doesn't Match")
-// 		return false, err
-// 	}
+	var pwd string
+	match, err := helpers.CheckPasswordHash(password, pwd)
+	if !match {
+		fmt.Println("Hash and Password Doesn't Match")
+		return false, err
+	}
 
-// 	return true, nil
-// }
+	return true, nil
+}
 
 // func LoginUserValidation(username, role string) {
 // 	validate := validator.New()
 
-// 	user := User{
+// 	user := &models.User{
 // 		Id: id,
 // 		Username: username,
 // 		Role: role,

@@ -5,10 +5,13 @@ import (
 )
 
 type KedatanganKapal struct {
-	Id                 int       `gorm:"primaryKey" json:"id" form:"id"`
-	Id_Kapal           int       `gorm:"foreignKey: kapalID" json:"id_kapal" form:"id_kapal"`
-	Id_Pelabuhan       int       `gorm:"foreignKey: pelabuhanID" json:"id_pelabuhan" form:"id_pelabuhan"`
-	Id_Jenis_Muatan    int       `gorm:"foreignKey: jenis_muatanID" json:"id_jenis_muatan" form:"id_jenis_muatan"`
+	Id       int `json:"id" gorm:"primaryKey" form:"id"`
+	Id_Kapal int `json:"id_kapal" form:"id_kapal"`
+	// Kapal              Kapal     `json:"kapal" gorm:foreignKey:IdKedatanganKapal;references:Id`
+	Id_Pelabuhan int `json:"id_pelabuhan" form:"id_pelabuhan"`
+	// Pelabuhan          Pelabuhan `json:"pelabuhan" gorm:foreignKey:IdKedatanganKapal;references:Id`
+	Id_Jenis_Muatan int `json:"id_jenis_muatan" form:"id_jenis_muatan"`
+	// Jenis_Muatan       Muatan    `json:"jenis_muatan" gorm:foreignKey:IdKedatanganKapal;references:Id`
 	Daerah_Penangkapan string    `json:"daerah_penangkapan" form:"daerah_penangkapan"`
 	Total_Tangkapan    string    `json:"total_tangkapan" form:"total_tangkapan"`
 	Tgl_Keberangkatan  time.Time `json:"tgl_keberangkatan" form:"tgl_keberangkatan"`
