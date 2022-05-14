@@ -9,12 +9,15 @@ import (
 )
 
 func GetAllAlatTangkapController(c echo.Context) error {
-	ListAlatTangkap, err := repository.GetAllAlatTangkap()
+	data, err := repository.GetAllAlatTangkap()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, ListAlatTangkap)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message":             "Kamu Berhasil Melihat Semua Data Alat Tangkap",
+		"Daftar Alat Tangkap": data,
+	})
 }
 
 func GetAlatTangkapController(c echo.Context) error {

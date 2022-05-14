@@ -9,12 +9,15 @@ import (
 )
 
 func GetAllMuatanController(c echo.Context) error {
-	JenisMuatan, err := repository.GetAllMuatanKapal()
+	data, err := repository.GetAllMuatanKapal()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, JenisMuatan)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message":                       "Kamu Berhasil Melihat Semua Data Jenis Muatan",
+		"Daftar Muatan Kapal Perikanan": data,
+	})
 }
 
 func GetMuatanController(c echo.Context) error {

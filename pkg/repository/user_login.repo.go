@@ -7,6 +7,14 @@ import (
 	"mini_project/pkg/models"
 )
 
+func CreateNewUser(user models.User) error {
+	err := database.DB.Save(&user).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	return err
+}
+
 func LoginCheck(username, password string) (bool, error) {
 	err := database.DB.First(&models.User{}, "username = ?", username).Debug().Error
 	// if err ==  {
