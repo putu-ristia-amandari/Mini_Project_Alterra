@@ -48,3 +48,13 @@ func UpdateKapalById(id string, NamaKapal models.Kapal) error {
 	}
 	return err
 }
+
+func GroupingKapal() ([]models.Kapal, error) {
+	var Data []models.Kapal
+	err := database.DB.Select("nama_kapal", "id_perusahaan").Order("id_perusahaan, nama_kapal desc").
+		Find(&Data).Debug().Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	return Data, err
+}

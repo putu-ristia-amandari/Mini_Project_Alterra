@@ -69,3 +69,15 @@ func UpdateKapalController(c echo.Context) error {
 	return c.JSON(http.StatusOK, NamaKapal)
 
 }
+
+func GroupingKapalController(c echo.Context) error {
+	data, err := repository.GroupingKapal()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message":                "Berhasil Grouping Kapal Berdasarkan Id Perusahaan",
+		"Daftar Kapal Perikanan": data,
+	})
+}

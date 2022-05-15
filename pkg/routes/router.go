@@ -35,6 +35,7 @@ func Route() *echo.Echo {
 	e.DELETE("/kapal/:id", controllers.DeleteKapalController, g.IsAuthenticated)
 	e.POST("/kapal", controllers.CreateKapalController, g.IsAuthenticated)
 	e.PUT("/kapal/:id", controllers.UpdateKapalController, g.IsAuthenticated)
+	e.GET("/grouping", controllers.GroupingKapalController)
 
 	// Routes Pelabuhan
 	e.GET("/pelabuhan", controllers.GetAllPelabuhanController)
