@@ -28,6 +28,7 @@ func Route() *echo.Echo {
 	e.DELETE("/kedatangan/:id", c.DeleteKedatanganKapalController, m.IsAuthenticated)
 	e.POST("/kedatangan", c.CreateKedatanganKapalController, m.IsAuthenticated)
 	e.PUT("/kedatangan/:id", c.UpdateKedatanganKapalController, m.IsAuthenticated)
+	e.GET("/grouparea", c.GroupingDaerahController)
 
 	// Routes Kapal
 	e.GET("/kapal", c.GetAllKapalController)

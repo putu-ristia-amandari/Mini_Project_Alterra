@@ -59,17 +59,6 @@ func CreateKapalController(c echo.Context) error {
 }
 
 func UpdateKapalController(c echo.Context) error {
-	// user, err := utils.ParsingJWT(c)
-	// if err != nil {
-	// 	return c.JSON(500, echo.Map{
-	// 		"error": err.Error(),
-	// 	})
-	// } else if user.Role != "admin" {
-	// 	return c.JSON(200, echo.Map{
-	// 		"error": "restricted (*only for admin)",
-	// 	})
-	// }
-
 	NamaKapal := models.Kapal{}
 	c.Bind(&NamaKapal)
 	err := repository.UpdateKapalById(c.Param("id"), NamaKapal)

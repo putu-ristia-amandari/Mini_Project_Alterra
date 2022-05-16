@@ -17,7 +17,7 @@ type iKedatanganRepo interface {
 func GetAllKedatanganKapal() ([]models.KedatanganKapal, error) {
 	var listkapal []models.KedatanganKapal
 
-	err := database.DB.Debug().Find(&listkapal).Error
+	err := database.DB.Find(&listkapal).Debug().Error
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -50,9 +50,35 @@ func CreateNewKedatanganKapal(kedatangan models.KedatanganKapal) error {
 }
 
 func UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error {
-	err := database.DB.Debug().Model(&kedatangan).Where("id = ?", id).Updates(&kedatangan).Error
+	err := database.DB.Model(&kedatangan).Where("id = ?", id).Updates(&kedatangan).Debug().Error
 	if err != nil {
 		fmt.Println(err)
 	}
 	return err
 }
+
+func GroupingDaerah() ([]models.KedatanganKapal, error) {
+	var Data []models.KedatanganKapal
+	err := database.DB.Select("daerah_penangkapan", "id_kapal").Order("daerah_penangkapan, id_kapal asc").
+		Find(&Data).Debug().Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	return Data, err
+}
+
+// func SubQueryNamaKapal([]models.KedatanganKapal, []models.Kapal) error {
+// 	var (
+// 		kedatangan []models.KedatanganKapal
+// 		kapal      []models.Kapal
+// 	)
+// 	subQuery1 := database.DB.Select("id_kapal").Find(&kedatangan)
+// 	subQuery2 := database.DB.Select("nama_kapal").Find(&kapal)
+
+// 	err := database.DB.Raw("(?) as u, (?) as p", subQuery1, subQuery2).Find(&rows).Debug().Error
+
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+// 	return err
+// }

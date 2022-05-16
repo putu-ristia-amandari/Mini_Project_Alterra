@@ -69,3 +69,26 @@ func UpdateKedatanganKapalController(c echo.Context) error {
 	return c.JSON(http.StatusOK, kapal)
 
 }
+
+func GroupingDaerahController(c echo.Context) error {
+	data, err := repository.GroupingDaerah()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message":                "Berhasil Grouping Kapal Berdasarkan Daerah Penangkapannya",
+		"Daftar Kapal Perikanan": data,
+	})
+}
+
+// func SubQueryNamaKapalController(c echo.Context) error {
+// 	kapal := models.KedatanganKapal{}
+// 	kapal, err := repository.SubQueryNamaKapal()
+// 	if err != nil {
+// 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+
+// 	}
+// 	return c.JSON(http.StatusOK, kapal)
+
+// }
