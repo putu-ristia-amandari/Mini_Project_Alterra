@@ -12,7 +12,7 @@ type KedatanganKapal struct {
 	// Kapal              Kapal     `json:"kapal" gorm:foreignKey:IdKedatanganKapal;references:Id`
 	Id_Pelabuhan int `json:"id_pelabuhan" form:"id_pelabuhan"`
 	// Pelabuhan          Pelabuhan `json:"pelabuhan" gorm:foreignKey:IdKedatanganKapal;references:Id`
-	Id_Jenis_Muatan datatypes.JSON `gorm:column="id_jenis_muatan form:"id_jenis_muatan"`
+	Id_Jenis_Muatan datatypes.JSON `gorm:"column=id_jenis_muatan" form:"id_jenis_muatan"`
 	// Jenis_Muatan       Muatan    `json:"jenis_muatan" gorm:foreignKey:IdKedatanganKapal;references:Id`
 	Daerah_Penangkapan string    `json:"daerah_penangkapan" form:"daerah_penangkapan"`
 	Total_Tangkapan    string    `json:"total_tangkapan" form:"total_tangkapan"`

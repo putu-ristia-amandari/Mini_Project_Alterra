@@ -44,7 +44,6 @@ func DeleteAlatTangkapController(c echo.Context) error {
 }
 
 func CreateAlatTangkapController(c echo.Context) error {
-	id := c.Param("id")
 	NamaAlatTangkap := models.AlatTangkap{}
 	c.Bind(&NamaAlatTangkap)
 	err := repository.CreateNewAlatTangkap(NamaAlatTangkap)
@@ -52,20 +51,18 @@ func CreateAlatTangkapController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes insert data alat tangkap dengan id '" + id + "'",
-	})
+	return c.JSON(http.StatusOK, NamaAlatTangkap)
 
 }
 
 func UpdateAlatTangkapController(c echo.Context) error {
-	NamaAlatTangkap := models.AlatTangkap{}
-	c.Bind(&NamaAlatTangkap)
-	err := repository.UpdateAlatTangkapById(c.Param("id"), NamaAlatTangkap)
+	NamaAlatTangkap1 := models.AlatTangkap{}
+	c.Bind(&NamaAlatTangkap1)
+	err := repository.UpdateAlatTangkapById(c.Param("id"), NamaAlatTangkap1)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaAlatTangkap)
+	return c.JSON(http.StatusOK, NamaAlatTangkap1)
 
 }

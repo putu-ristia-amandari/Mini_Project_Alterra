@@ -7,6 +7,6 @@ import (
 
 func LoggerMiddleware(e *echo.Echo) {
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		Format: "time=[${time_rfc3339_nano}], method=[${method}], host=[${host}], status=[${status}], uri=[${uri}]\n",
+		Format: "time=[${time_rfc3339_nano}], method=[${method}], host=[${host}${path}], status=[${status}], remoteIp=[${remote_ip}]\n",
 	}))
 }

@@ -6,6 +6,14 @@ import (
 	"mini_project/pkg/models"
 )
 
+type iKedatanganRepo interface {
+	GetAllKedatanganKapal() ([]models.KedatanganKapal, error)
+	GetKedatanganKapalById(id string) (models.KedatanganKapal, error)
+	DeleteKedatanganKapalById(id string) error
+	CreateNewKedatanganKapal(kedatangan models.KedatanganKapal)
+	UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error
+}
+
 func GetAllKedatanganKapal() ([]models.KedatanganKapal, error) {
 	var listkapal []models.KedatanganKapal
 

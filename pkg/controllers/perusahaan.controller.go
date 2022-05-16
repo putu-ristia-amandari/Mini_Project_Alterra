@@ -44,7 +44,6 @@ func DeletePerusahaanController(c echo.Context) error {
 }
 
 func CreatePerusahaanController(c echo.Context) error {
-	id := c.Param("id")
 	NamaPerusahaan := models.PerusahaanKapal{}
 	c.Bind(&NamaPerusahaan)
 	err := repository.CreateNewPerusahaan(NamaPerusahaan)
@@ -52,20 +51,18 @@ func CreatePerusahaanController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes insert data perusahaan kapal dengan id  '" + id + "'",
-	})
+	return c.JSON(http.StatusOK, NamaPerusahaan)
 
 }
 
 func UpdatePerusahaanController(c echo.Context) error {
-	NamaPerusahaan := models.PerusahaanKapal{}
-	c.Bind(&NamaPerusahaan)
-	err := repository.UpdatePerusahaanById(c.Param("id"), NamaPerusahaan)
+	NamePerusahaan := models.PerusahaanKapal{}
+	c.Bind(&NamePerusahaan)
+	err := repository.UpdatePerusahaanById(c.Param("id"), NamePerusahaan)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaPerusahaan)
+	return c.JSON(http.StatusOK, NamePerusahaan)
 
 }
