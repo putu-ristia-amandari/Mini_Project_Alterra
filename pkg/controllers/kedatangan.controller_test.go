@@ -20,17 +20,17 @@ package controllers
 // 	c := e.NewContext(req, rec)
 // 	c.SetPath("/")
 
-// 	kedatangan := repository.NewMockKedatanganRepository()
-// 	kedatangan.Add(models.KedatanganKapal{Id: 1, Id_Kapal: 1, Id_Pelabuhan: 1, Id_Jenis_Muatan: [3, 8], Daerah_Penangkapan: "Laut Lepas Samudra Hindia",
+// 	datang := repository.NewMockKedatanganRepository()
+// 	datang.Add(models.KedatanganKapal{Id: 1, Id_Kapal: 1, Id_Pelabuhan: 1, Id_Jenis_Muatan: [3, 8], Daerah_Penangkapan: "Laut Lepas Samudra Hindia",
 // 		Total_Tangkapan: "1000 kg", Tgl_Keberangkatan: "2021-12-04 14:20:00", Tgl_Kedatangan: "2022-12-04 14:20:00",
 // 		Created_At: "2022-12-04 14:20:00", Updated_At: "2022-12-04 14:20:00"})
 
-// 	kedatangan.Add(models.KedatanganKapal{Id: 2, Id_Kapal: 2, Id_Pelabuhan: 2, Id_Jenis_Muatan: [2, 5], Daerah_Penangkapan: "ZEE 718 Laut Aru",
+// 	datang.Add(models.KedatanganKapal{Id: 2, Id_Kapal: 2, Id_Pelabuhan: 2, Id_Jenis_Muatan: [2, 5], Daerah_Penangkapan: "ZEE 718 Laut Aru",
 // 		Total_Tangkapan: "500 kg", Tgl_Keberangkatan: "2021-12-01 14:25:00", Tgl_Kedatangan: "2022-12-01 09:20:00",
 // 		Created_At: "2022-12-01 09:20:00", Updated_At: "2022-12-01 09:20:00"})
 
-// 	kapal := NewGetAllKedatanganKapalController(kedatangan)
-// 	kapal.Get(c)
+// 	kedatangan:= NewKedatanganKapalController(datang)
+// 	kedatangan.Get(c)
 
 // 	var listkapal []models.KedatanganKapal
 // 	if err := json.Unmarshal(rec.Body.Bytes(), &listkapal); err != nil {

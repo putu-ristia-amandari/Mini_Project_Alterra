@@ -19,17 +19,15 @@ package controllers
 // 	c := e.NewContext(req, rec)
 // 	c.SetPath("/")
 
-// 	listkapal := repository.NewMockKapalRepository()
-// 	listkapal.Read(models.Kapal{Id: 2, Id_Perusahaan: 3, Id_Tipe_Kapal: 1, Nama_Kapal: "BANDAR NELAYAN", Ukuran_Kapal: "200 GT",
-// 		Kekuatan_Mesin: "370 PK", Call_Sign_Kapal: "YOO5608", Nama_Nahkoda: "AMIR",
-// 		Created_At: "2022-01-01 11:00:00", Updated_At: "2022-01-01 11:00:00"})
+// 	kr := repository.NewMockKapalRepository()
+// 	kr.Add(models.Kapal{Id: 2, Id_Perusahaan: 3, Id_Tipe_Kapal: 1, Nama_Kapal: "BANDAR NELAYAN", Ukuran_Kapal: "200 GT",
+// 		Kekuatan_Mesin: "370 PK", Call_Sign_Kapal: "YOO5608", Nama_Nahkoda: "AMIR"})
 
-// 	listkapal.Read(models.Kapal{Id: 5, Id_Perusahaan: 3, Id_Tipe_Kapal: 1, Nama_Kapal: "NELAYAN BIRU", Ukuran_Kapal: "150 GT",
-// 		Kekuatan_Mesin: "250 PK", Call_Sign_Kapal: "YAK6808", Nama_Nahkoda: "HASAN",
-// 		Created_At: "2022-01-01 11:00:00", Updated_At: "2022-01-01 11:00:00"})
+// 	kr.Add(models.Kapal{Id: 5, Id_Perusahaan: 3, Id_Tipe_Kapal: 1, Nama_Kapal: "NELAYAN BIRU", Ukuran_Kapal: "150 GT",
+// 		Kekuatan_Mesin: "250 PK", Call_Sign_Kapal: "YAK6808", Nama_Nahkoda: "HASAN"})
 
-// 	kapal := NewGetAllKapalController(listkapal)
-// 	kapal.Get(c)
+// 	kc := NewKapalController(kr)
+// 	kc.GetAllKapal(c)
 
 // 	var namakapal []models.Kapal
 // 	if err := json.Unmarshal(rec.Body.Bytes(), &namakapal); err != nil {

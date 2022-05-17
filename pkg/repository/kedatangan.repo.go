@@ -6,14 +6,13 @@ import (
 	"mini_project/pkg/models"
 )
 
-// type iKedatanganRepo interface {
-// 	GetAllKedatanganKapal() ([]models.KedatanganKapal, error)
-// 	GetKedatanganKapalById(id string) (models.KedatanganKapal, error)
-// 	DeleteKedatanganKapalById(id string) error
-// 	CreateNewKedatanganKapal(kedatangan models.KedatanganKapal) error
-// 	UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error
-// 	GroupingDaerah() ([]models.KedatanganKapal, error)
-// }
+type KedatanganRepository interface {
+	GetAllKedatanganKapal() ([]models.KedatanganKapal, error)
+	GetKedatanganKapalById(id string) (models.KedatanganKapal, error)
+	CreateNewKedatanganKapal(kedatangan models.KedatanganKapal) error
+	UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error
+	GroupingDaerah() ([]models.KedatanganKapal, error)
+}
 
 func GetAllKedatanganKapal() ([]models.KedatanganKapal, error) {
 	var listkapal []models.KedatanganKapal

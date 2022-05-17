@@ -6,6 +6,14 @@ import (
 	"mini_project/pkg/models"
 )
 
+type KapalRepository interface {
+	GetAllKapal() ([]models.Kapal, error)
+	GetKapalById(id string) (models.Kapal, error)
+	CreateNewKapal(NamaKapal models.Kapal) error
+	UpdateKapalById(id string, NamaKapal models.Kapal) error
+	GroupingKapal() ([]models.Kapal, error)
+}
+
 func GetAllKapal() ([]models.Kapal, error) {
 	var ListNamaKapal []models.Kapal
 

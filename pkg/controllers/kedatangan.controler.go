@@ -8,6 +8,10 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+type KedatanganController struct {
+	datang repository.KedatanganRepository
+}
+
 func GetAllKedatanganKapalController(c echo.Context) error {
 	data, err := repository.GetAllKedatanganKapal()
 	if err != nil {
@@ -68,6 +72,12 @@ func GroupingDaerahController(c echo.Context) error {
 		"message":                "Berhasil Grouping Kapal Berdasarkan Daerah Penangkapannya",
 		"Daftar Kapal Perikanan": data,
 	})
+}
+
+func NewKedatanganController(datang repository.KedatanganRepository) KedatanganController {
+	return KedatanganController{
+		datang: datang,
+	}
 }
 
 // func SubQueryNamaKapalController(c echo.Context) error {

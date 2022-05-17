@@ -8,6 +8,10 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+type KapalController struct {
+	kr repository.KapalRepository
+}
+
 func GetAllKapalController(c echo.Context) error {
 	data, err := repository.GetAllKapal()
 	if err != nil {
@@ -68,4 +72,10 @@ func GroupingKapalController(c echo.Context) error {
 		"message":                "Berhasil Grouping Kapal Berdasarkan Id Perusahaan",
 		"Daftar Kapal Perikanan": data,
 	})
+}
+
+func NewKapalController(kr repository.KapalRepository) KapalController {
+	return KapalController{
+		kr: kr,
+	}
 }
