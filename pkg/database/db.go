@@ -30,4 +30,11 @@ func DBConnect() *gorm.DB {
 
 func InitialMigration() {
 	DB.AutoMigrate(&models.KedatanganKapal{})
+	DB.AutoMigrate(&models.Kapal{})
+	DB.AutoMigrate(&models.Pelabuhan{})
+	DB.AutoMigrate(&models.PerusahaanKapal{})
+	DB.AutoMigrate(&models.Muatan{})
+	DB.AutoMigrate(&models.AlatTangkap{})
+	DB.AutoMigrate(&models.TipeKapal{})
+	DB.AutoMigrate(&models.User{})
 }
