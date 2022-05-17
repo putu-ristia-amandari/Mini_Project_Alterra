@@ -38,7 +38,7 @@ func DeleteAlatTangkapController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes delete data alat tangkap dengan id '" + id + "'",
+		"message": "Berhasil Menghapus Data Pelabuhan dengan id '" + id + "'",
 	})
 
 }
@@ -51,8 +51,9 @@ func CreateAlatTangkapController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaAlatTangkap)
-
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Menambahkan Data Alat Tangkap",
+	})
 }
 
 func UpdateAlatTangkapController(c echo.Context) error {
@@ -63,6 +64,8 @@ func UpdateAlatTangkapController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaAlatTangkap1)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Memperbaharui Data",
+	})
 
 }

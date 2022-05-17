@@ -25,14 +25,6 @@ func GetKapalById(id string) (models.Kapal, error) {
 	return kapal, err
 }
 
-func DeleteKapalById(id string) error {
-	err := database.DB.Delete(&models.Kapal{}, "id = ?", id).Debug().Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
-}
-
 func CreateNewKapal(NamaKapal models.Kapal) error {
 	err := database.DB.Save(&NamaKapal).Error
 	if err != nil {

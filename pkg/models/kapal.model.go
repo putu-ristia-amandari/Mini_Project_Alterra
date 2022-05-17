@@ -7,7 +7,6 @@ import (
 type Kapal struct {
 	Id              int       `gorm:"primaryKey" json:"id" form:"id"`
 	Id_Perusahaan   int       `json:"id_perusahaan" form:"id_perusahaan"`
-	Id_Pelabuhan    int       `json:"id_pelabuhan" form:"id_pelabuhan"`
 	Id_Tipe_Kapal   int       `json:"id_tipe_kapal" form:"id_tipe_kapal"`
 	Nama_Kapal      string    `json:"nama_kapal" form:"nama_kapal"`
 	Ukuran_Kapal    string    `json:"ukuran_kapal" form:"ukuran_kapal"`

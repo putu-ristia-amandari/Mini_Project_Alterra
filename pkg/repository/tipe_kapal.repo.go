@@ -24,27 +24,3 @@ func GetTipeKapalById(id string) (models.TipeKapal, error) {
 	}
 	return TipeKapal, err
 }
-
-func DeleteTipeKapalById(id string) error {
-	err := database.DB.Delete(&models.TipeKapal{}, "id = ?", id).Debug().Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
-}
-
-func CreateNewTipeKapal(TipeKapal models.TipeKapal) error {
-	err := database.DB.Save(&TipeKapal).Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
-}
-
-func UpdateTipeKapalById(id string, TipeKapal models.TipeKapal) error {
-	err := database.DB.Model(&TipeKapal).Where("id = ?", id).Updates(TipeKapal).Debug().Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return err
-}

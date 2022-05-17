@@ -18,60 +18,54 @@ func Route() *echo.Echo {
 	})
 
 	// Routes Login
-	// e.GET("/generate-hash/:password", controllers.GenerateHashPassword)
 	e.POST("/createuser", c.CreateUserController)
 	e.POST("/login", c.LoginController)
 
 	// Routes Kedatangan
-	e.GET("/kedatangan", c.GetAllKedatanganKapalController)
-	e.GET("/kedatangan/:id", c.GetKedatanganKapalController)
-	e.DELETE("/kedatangan/:id", c.DeleteKedatanganKapalController, m.IsAuthenticated)
+	e.GET("/kedatangan", c.GetAllKedatanganKapalController, m.IsAuthenticated)
+	e.GET("/kedatangan/:id", c.GetKedatanganKapalController, m.IsAuthenticated)
 	e.POST("/kedatangan", c.CreateKedatanganKapalController, m.IsAuthenticated)
 	e.PUT("/kedatangan/:id", c.UpdateKedatanganKapalController, m.IsAuthenticated)
-	e.GET("/grouparea", c.GroupingDaerahController)
+	e.GET("/grouparea", c.GroupingDaerahController, m.IsAuthenticated)
 
 	// Routes Kapal
-	e.GET("/kapal", c.GetAllKapalController)
-	e.GET("/kapal/:id", c.GetKapalController)
-	e.DELETE("/kapal/:id", c.DeleteKapalController, m.IsAuthenticated)
+	e.GET("/kapal", c.GetAllKapalController, m.IsAuthenticated)
+	e.GET("/kapal/:id", c.GetKapalController, m.IsAuthenticated)
 	e.POST("/kapal", c.CreateKapalController, m.IsAuthenticated)
 	e.PUT("/kapal/:id", c.UpdateKapalController, m.IsAuthenticated)
-	e.GET("/grouping", c.GroupingKapalController)
+	e.GET("/grouping", c.GroupingKapalController, m.IsAuthenticated)
 
 	// Routes Pelabuhan
-	e.GET("/pelabuhan", c.GetAllPelabuhanController)
-	e.GET("/pelabuhan/:id", c.GetPelabuhanController)
+	e.GET("/pelabuhan", c.GetAllPelabuhanController, m.IsAuthenticated)
+	e.GET("/pelabuhan/:id", c.GetPelabuhanController, m.IsAuthenticated)
 	e.DELETE("/pelabuhan/:id", c.DeletePelabuhanController, m.IsAuthenticated)
 	e.POST("/pelabuhan", c.CreatePelabuhanController, m.IsAuthenticated)
 	e.PUT("/pelabuhan/:id", c.UpdatePelabuhanController, m.IsAuthenticated)
 
 	// Routes Perusahaan
-	e.GET("/perusahaan", c.GetAllPerusahaanController)
+	e.GET("/perusahaan", c.GetAllPerusahaanController, m.IsAuthenticated)
 	e.GET("/perusahaan/:id", c.GetPerusahaanController, m.IsAuthenticated)
 	e.DELETE("/perusahaan/:id", c.DeletePerusahaanController, m.IsAuthenticated)
-	e.POST("/perusahaan", c.CreatePerusahaanController)
-	e.PUT("/perusahaan/:id", c.UpdatePerusahaanController)
+	e.POST("/perusahaan", c.CreatePerusahaanController, m.IsAuthenticated)
+	e.PUT("/perusahaan/:id", c.UpdatePerusahaanController, m.IsAuthenticated)
 
 	//Routes Muatan
-	e.GET("/muatan", c.GetAllMuatanController)
-	e.GET("/muatan/:id", c.GetMuatanController)
+	e.GET("/muatan", c.GetAllMuatanController, m.IsAuthenticated)
+	e.GET("/muatan/:id", c.GetMuatanController, m.IsAuthenticated)
 	e.DELETE("/muatan/:id", c.DeleteMuatanController, m.IsAuthenticated)
 	e.POST("/muatan", c.CreateMuatanController, m.IsAuthenticated)
 	e.PUT("/muatan/:id", c.UpdateMuatanController, m.IsAuthenticated)
 
 	// Routes Alat Tangkap
-	e.GET("/alat", c.GetAllAlatTangkapController)
-	e.GET("/alat/:id", c.GetAlatTangkapController)
+	e.GET("/alat", c.GetAllAlatTangkapController, m.IsAuthenticated)
+	e.GET("/alat/:id", c.GetAlatTangkapController, m.IsAuthenticated)
 	e.DELETE("/alat/:id", c.DeleteAlatTangkapController, m.IsAuthenticated)
 	e.POST("/alat", c.CreateAlatTangkapController, m.IsAuthenticated)
 	e.PUT("/alat/:id", c.UpdateAlatTangkapController, m.IsAuthenticated)
 
 	// Routes Tipe Kapal
-	e.GET("/tipe", c.GetAllTipeKapalController)
-	e.GET("/tipe/:id", c.GetTipeKapalController)
-	e.DELETE("/tipe/:id", c.DeleteTipeKapalController, m.IsAuthenticated)
-	e.POST("/tipe", c.CreateTipeKapalController, m.IsAuthenticated)
-	e.PUT("/tipe/:id", c.UpdateTipeKapalController, m.IsAuthenticated)
+	e.GET("/tipe", c.GetAllTipeKapalController, m.IsAuthenticated)
+	e.GET("/tipe/:id", c.GetTipeKapalController, m.IsAuthenticated)
 
 	return e
 }

@@ -38,13 +38,12 @@ func DeleteMuatanController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes delete data muatan kapal dengan id '" + id + "'",
+		"message": "Berhasil Menghapus Data Pelabuhan dengan id '" + id + "'",
 	})
 
 }
 
 func CreateMuatanController(c echo.Context) error {
-	id := c.Param("id")
 	JenisMuatan := models.Muatan{}
 	c.Bind(&JenisMuatan)
 	err := repository.CreateNewMuatanKapal(JenisMuatan)
@@ -53,7 +52,7 @@ func CreateMuatanController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes insert data muatan dengan id  '" + id + "'",
+		"message": "Berhasil Menambahkan Data Jenis Muatan",
 	})
 
 }
@@ -66,6 +65,8 @@ func UpdateMuatanController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, MuatanKapal)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Memperbaharui Data",
+	})
 
 }

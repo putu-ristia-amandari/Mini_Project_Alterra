@@ -38,7 +38,7 @@ func DeletePerusahaanController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes delete data perusahaan kapal dengan id '" + id + "'",
+		"message": "Berhasil Menghapus Data Pelabuhan dengan id '" + id + "'",
 	})
 
 }
@@ -51,7 +51,9 @@ func CreatePerusahaanController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaPerusahaan)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Menambahkan Data Perusahaan",
+	})
 
 }
 
@@ -63,6 +65,8 @@ func UpdatePerusahaanController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamePerusahaan)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Memperbaharui Data",
+	})
 
 }

@@ -30,21 +30,7 @@ func GetKedatanganKapalController(c echo.Context) error {
 
 }
 
-func DeleteKedatanganKapalController(c echo.Context) error {
-	id := c.Param("id")
-	err := repository.DeleteKedatanganKapalById(id)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
-
-	}
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes delete data kedatangan kapal dengan id '" + id + "'",
-	})
-
-}
-
 func CreateKedatanganKapalController(c echo.Context) error {
-	id := c.Param("id")
 	kapal := models.KedatanganKapal{}
 	c.Bind(&kapal)
 	err := repository.CreateNewKedatanganKapal(kapal)
@@ -53,7 +39,7 @@ func CreateKedatanganKapalController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes insert data kedatangan kapal dengan id '" + id + "'",
+		"message": "Berhasil Menambahkan Data Kedatangan Kapal",
 	})
 
 }
@@ -66,7 +52,9 @@ func UpdateKedatanganKapalController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, kapal)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Memperbaharui Data",
+	})
 
 }
 

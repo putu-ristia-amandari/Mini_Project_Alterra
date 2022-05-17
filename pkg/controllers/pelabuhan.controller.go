@@ -38,13 +38,12 @@ func DeletePelabuhanController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes delete data pelabuhan dengan id '" + id + "'",
+		"message": "Berhasil Menghapus Data Pelabuhan dengan id '" + id + "'",
 	})
 
 }
 
 func CreatePelabuhanController(c echo.Context) error {
-	id := c.Param("id")
 	NamaPelabuhan := models.Pelabuhan{}
 	c.Bind(&NamaPelabuhan)
 	err := repository.CreateNewPelabuhan(NamaPelabuhan)
@@ -53,7 +52,7 @@ func CreatePelabuhanController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes insert data pelabuhan dengan id  '" + id + "'",
+		"message": "Berhasil Menambahkan Data Pelabuhan",
 	})
 
 }
@@ -66,6 +65,8 @@ func UpdatePelabuhanController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaPelabuhan)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Memperbaharui Data",
+	})
 
 }

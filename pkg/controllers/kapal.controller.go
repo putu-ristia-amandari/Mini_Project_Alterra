@@ -30,21 +30,7 @@ func GetKapalController(c echo.Context) error {
 
 }
 
-func DeleteKapalController(c echo.Context) error {
-	id := c.Param("id")
-	err := repository.DeleteKapalById(id)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
-
-	}
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes delete data kapal dengan id '" + id + "'",
-	})
-
-}
-
 func CreateKapalController(c echo.Context) error {
-	id := c.Param("id")
 	NamaKapal := models.Kapal{}
 	c.Bind(&NamaKapal)
 	err := repository.CreateNewKapal(NamaKapal)
@@ -53,7 +39,7 @@ func CreateKapalController(c echo.Context) error {
 
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "succes insert data kapal dengan id '" + id + "'",
+		"message": "Berhasil Menambahkan Data Kapal",
 	})
 
 }
@@ -66,7 +52,9 @@ func UpdateKapalController(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, NamaKapal)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Berhasil Memperbaharui Data",
+	})
 
 }
 
