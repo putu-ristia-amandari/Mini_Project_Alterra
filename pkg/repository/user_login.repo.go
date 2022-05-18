@@ -33,7 +33,7 @@ func LoginCheck(username, password string) (bool, error) {
 }
 
 func CreateNewUser(user models.User) error {
-	err := database.DB.Save(&user).Error
+	err := database.DB.Create(&user).Error
 	if err != nil {
 		fmt.Println(err)
 	}

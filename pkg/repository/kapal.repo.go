@@ -34,7 +34,7 @@ func GetKapalById(id string) (models.Kapal, error) {
 }
 
 func CreateNewKapal(NamaKapal models.Kapal) error {
-	err := database.DB.Save(&NamaKapal).Error
+	err := database.DB.Create(&NamaKapal).Error
 	if err != nil {
 		fmt.Println(err)
 	}

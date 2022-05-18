@@ -34,7 +34,7 @@ func DeleteAlatTangkapById(id string) error {
 }
 
 func CreateNewAlatTangkap(AlatTangkap models.AlatTangkap) error {
-	err := database.DB.Save(&AlatTangkap).Error
+	err := database.DB.Create(&AlatTangkap).Error
 	if err != nil {
 		fmt.Println(err)
 	}

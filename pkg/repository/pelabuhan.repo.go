@@ -34,7 +34,7 @@ func DeletePelabuhanById(id string) error {
 }
 
 func CreateNewPelabuhan(pelabuhan models.Pelabuhan) error {
-	err := database.DB.Save(&pelabuhan).Error
+	err := database.DB.Create(&pelabuhan).Error
 	if err != nil {
 		fmt.Println(err)
 	}

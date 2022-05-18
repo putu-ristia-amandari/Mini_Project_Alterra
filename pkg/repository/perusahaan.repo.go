@@ -34,7 +34,7 @@ func DeletePerusahaanById(id string) error {
 }
 
 func CreateNewPerusahaan(perusahaan models.PerusahaanKapal) error {
-	err := database.DB.Save(&perusahaan).Error
+	err := database.DB.Create(&perusahaan).Error
 	if err != nil {
 		fmt.Println(err)
 	}

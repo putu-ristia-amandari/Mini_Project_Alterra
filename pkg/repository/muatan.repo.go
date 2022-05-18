@@ -34,7 +34,7 @@ func DeleteMuatanKapalById(id string) error {
 }
 
 func CreateNewMuatanKapal(MuatanKapal models.Muatan) error {
-	err := database.DB.Save(&MuatanKapal).Error
+	err := database.DB.Create(&MuatanKapal).Error
 	if err != nil {
 		fmt.Println(err)
 	}

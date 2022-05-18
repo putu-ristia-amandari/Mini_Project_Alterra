@@ -34,7 +34,7 @@ func GetKedatanganKapalById(id string) (models.KedatanganKapal, error) {
 }
 
 func CreateNewKedatanganKapal(newdatang models.KedatanganKapal) error {
-	err := database.DB.Save(&newdatang).Error
+	err := database.DB.Create(&newdatang).Error
 	if err != nil {
 		fmt.Println(err)
 	}
