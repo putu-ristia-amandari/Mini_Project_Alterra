@@ -33,16 +33,16 @@ func GetKedatanganKapalById(id string) (models.KedatanganKapal, error) {
 	return kedatangan, err
 }
 
-func CreateNewKedatanganKapal(kedatangan models.KedatanganKapal) error {
-	err := database.DB.Save(&kedatangan).Error
+func CreateNewKedatanganKapal(newdatang models.KedatanganKapal) error {
+	err := database.DB.Save(&newdatang).Error
 	if err != nil {
 		fmt.Println(err)
 	}
 	return err
 }
 
-func UpdateKedatanganKapalById(id string, kedatangan models.KedatanganKapal) error {
-	err := database.DB.Model(&kedatangan).Where("id = ?", id).Updates(&kedatangan).Debug().Error
+func UpdateKedatanganKapalById(id string, newinfo models.KedatanganKapal) error {
+	err := database.DB.Model(&newinfo).Where("id = ?", id).Updates(&newinfo).Debug().Error
 	if err != nil {
 		fmt.Println(err)
 	}
